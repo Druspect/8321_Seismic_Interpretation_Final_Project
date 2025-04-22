@@ -25,26 +25,27 @@ My initial hypothesis is that a transfer learning approach, utilizing pre-traine
 ## Methodology
 The project adopts a structured pipeline (to be implemented in a Jupyter notebook):
 1. **Data Collection and Preprocessing**:
-   - Source open seismic datasets (e.g., SEG Machine Learning Challenge, TerraNubis F3).
-   - Preprocess data via denoising, normalization, and conversion to suitable formats (images for CNNs).
+   - Source open seismic datasets (TerraNubis F3).
+   - Preprocess data via denoising, normalization, and conversion to suitable formats for CNNs.
 2. **Transfer Learning**:
    - Fine-tune a pre-trained convolutional neural network (RoBERTA, TBD) for facies classification.
    - Address challenges like noisy labels using advanced techniques ( abel smoothing).
 3. **Reinforcement Learning**:
-   - Design an environment where an agent refines interpretations based on rewards tied to ground truth alignment.
-   - Experiment with algorithms like Deep Q-Networks (DQN) or others suited to high-dimensional data.
+   - Design an environment where an model refines interpretations based on rewards tied to ground truth alignment.
+   - Experiment with algorithms 
 4. **Comparative Analysis**:
-   - Benchmark against traditional methods (e.g., manual interpretation) and other ML approaches (e.g., unsupervised clustering).
+   - Benchmark against traditional methods.
    - Use metrics such as accuracy, F1-score, and computational efficiency.
 5. **Visualization**:
    - Generate seismic sections with predicted facies overlays for validation and presentation.
+   - show accuracy and loss graph of training models for reference
 
 ## Getting Started
 
 ### Prerequisites
 - **Python**: 3.8 or higher
 - **JupyterLab**: For running the planned notebook
-- **Hardware**: GPU recommended for model training
+- **Hardware**: **MPS**/GPU recommended for model training
 
 ### Installation
 1. Clone the repository:
@@ -54,11 +55,6 @@ The project adopts a structured pipeline (to be implemented in a Jupyter noteboo
 Install dependencies (once populated):
 bash
 
-Collapse
-
-Unwrap
-
-Copy
 pip install -r requirements.txt
 Obtain seismic datasets as outlined in data/README.md and place them in the data/ directory.
 Usage
@@ -92,7 +88,6 @@ Documentation
 
 ## Obtaining Datasets
 Download from:
-- [SEG Machine Learning Challenge Dataset](https://seg.org) - Labeled seismic data for facies classification.
 - [TerraNubis F3 Dataset](https://terranubis.com) - Open seismic dataset with geological context.
 
 ## Setup Instructions
@@ -106,8 +101,7 @@ Download from:
 docs/theoretical_background.md (Template)
 
 # Theoretical Background
-
-This document outlines the theoretical foundations of the project.
+This document outlines the theoretical foundations of the project. to be written.
 
 ## Seismic Interpretation
 Seismic data interpretation involves analyzing reflected waves to map subsurface structures. Challenges include:
@@ -145,20 +139,3 @@ tensorflow  # For transfer learning
 torch       # Alternative for RL or TL
 obspy       # For seismic data handling
 .gitignore
-
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-*.egg-info/
-
-# Jupyter
-*.ipynb_checkpoints/
-
-# Large files
-data/*.segy
-outputs/models/*
