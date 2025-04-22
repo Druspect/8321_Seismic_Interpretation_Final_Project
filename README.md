@@ -1,7 +1,7 @@
 # Seismic Interpretation with Transfer and Reinforcement Learning
 
 ## Introduction
-This repository hosts a research project aimed at advancing seismic data interpretation for stratigraphic analysis through the integration of **transfer learning** and **reinforcement learning**. Designed to meet PhD-level standards, the project seeks to automate and enhance the traditionally slow and subjective process of interpreting seismic data, with applications in hydrocarbon exploration, geothermal energy, and carbon sequestration.
+This repository hosts a research project aimed at advancing seismic data interpretation for stratigraphic analysis through the integration of **transfer learning** and **reinforcement learning**. 
 
 ## Project Overview
 
