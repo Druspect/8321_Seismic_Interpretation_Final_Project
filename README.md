@@ -120,11 +120,8 @@ Reinforcement learning (RL) involves an agent learning optimal actions via rewar
 - **Action**: Adjustments to the interpretation.
 - **Reward**: Alignment with ground truth or expert feedback.
 
-## Justification
-- Transfer learning suits seismic data due to limited labeled examples. Datasets were picked initially with labels, but the end goal is to test on an unlabeled dataset of personal knowledge and check on my finding manually. 
 
 ## Datasets
-- SEG Machine Learning Challenge: https://seg.org
 - TerraNubis F3 Dataset: https://terranubis.com
 requirements.txt (Template)
 
