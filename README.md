@@ -1,138 +1,107 @@
-# Seismic Interpretation with Transfer and Reinforcement Learning
+# Automated Seismic Facies Classification using 3D CNN, BiLSTM, and Hybrid Deep Learning Models
 
 ## Introduction
-This repository hosts a research project aimed at advancing seismic data interpretation for stratigraphic analysis through the integration of **transfer learning** and **reinforcement learning**. 
+This repository hosts a research project focused on advancing seismic data interpretation for stratigraphic analysis through the application of deep learning models. Specifically, we explore the capabilities of a 3D Convolutional Neural Network (CNN), a Bidirectional Long Short-Term Memory (BiLSTM) network, and a novel hybrid model that combines the strengths of both architectures for seismic facies classification.
 
 ## Project Overview
 
 ### Motivation
-Manual seismic stratigraphic interpretation is labor-intensive, prone to human error, and heavily reliant on expert knowledge. By leveraging machine learning, this project aims to improve the efficiency, accuracy, and objectivity of seismic facies classification and interpretation refinement. Addressing key challenges such as large dataset handling, noise, and complex geological structures that can inhibit our ability to exctract stratigraphic bedding data.
+Manual seismic stratigraphic interpretation is labor-intensive, prone to human error, and heavily reliant on expert knowledge. By leveraging machine learning, this project aims to improve the efficiency, accuracy, and objectivity of seismic facies classification. We address key challenges such as large dataset handling, noise, and complex geological structures that can inhibit our ability to extract stratigraphic bedding data.
 
 ### Research Questions
-1. To what extent can transfer learning enhance the accuracy and efficiency of seismic facies classification compared to traditional manual methods?
-2. Will this transfer taught model be able to work on unlabeled data once trained with any discernable accuracy?
-3. Under what conditions can reinforcement learning effectively refine seismic interpretations, and how does its performance compare to other machine learning approaches?
+1.  How effectively can a 3D Convolutional Neural Network (CNN), trained on seismic amplitude patches, classify seismic facies defined by interpreted horizons?
+2.  Can sequence-based models, specifically a Bidirectional Long Short-Term Memory (BiLSTM) network analyzing individual seismic traces, provide a competitive or complementary approach to patch-based CNNs for this classification task?
+3.  Does a hybrid model combining features from the 3D CNN and BiLSTM improve classification performance compared to the individual models?
+4.  Will these models be able to work on unlabeled data once trained with any discernible accuracy? (Secondary question, focus on supervised first)
 
 ### Hypothesis
-My initial hypothesis is that a transfer learning approach, utilizing pre-trained models fine-tuned on seismic data, will outperform traditional interpretation methods in both **speed** and precision. This will be a easy to show process with the labeled data, but may pose some issues based off of geologic location with which it was trained versus target environment. Unlabeled data with pose another issue. Additionally, reinforcement learning will further improve results by iteratively refining interpretations, provided a decent reward system is implemented.
+Our hypothesis is that a 3D CNN will excel at capturing spatial patterns from seismic patches, while a BiLSTM will be effective in modeling sequential dependencies along seismic traces. We further hypothesize that a hybrid model, integrating features from both the CNN and BiLSTM, will outperform the individual models by leveraging both spatial and sequential information, leading to more accurate and robust seismic facies classification.
 
 ### Objectives
-- Demonstrate the applicability of transfer learning to seismic data with limited labeled examples.
-- Test on multiple geologic environment and multiple datasets.
-- Test on unlabeled datasets
-- Explore the use of reinforcement learning in a stratigraphic context.
+-   Develop and evaluate a 3D CNN for patch-based seismic facies classification using the F3 block dataset.
+-   Develop and evaluate a BiLSTM network for trace-based seismic facies classification using the F3 block dataset.
+-   Design, implement, and evaluate a hybrid deep learning model that combines the feature extraction capabilities of the 3D CNN and BiLSTM.
+-   Compare the performance of the 3D CNN, BiLSTM, and hybrid model using standard classification metrics.
+-   Investigate the potential for these trained models to generalize to unlabeled data (exploratory).
 
 ## Methodology
-The project adopts a structured pipeline (to be implemented in a Jupyter notebook):
-1. **Data Collection and Preprocessing**:
-   - Source open seismic datasets (TerraNubis F3).
-   - Preprocess data via denoising, normalization, and conversion to suitable formats for CNNs.
-2. **Transfer Learning**:
-   - Fine-tune a pre-trained convolutional neural network (RoBERTA, TBD) for facies classification.
-   - Address challenges like noisy labels using advanced techniques ( abel smoothing).
-3. **Reinforcement Learning**:
-   - Design an environment where an model refines interpretations based on rewards tied to ground truth alignment.
-   - Experiment with algorithms 
-4. **Comparative Analysis**:
-   - Benchmark against traditional methods.
-   - Use metrics such as accuracy, F1-score, and computational efficiency.
-5. **Visualization**:
-   - Generate seismic sections with predicted facies overlays for validation and presentation.
-   - show accuracy and loss graph of training models for reference
+The project adopts a structured pipeline implemented in a Jupyter notebook:
+1.  **Data Collection and Preprocessing**:
+    *   Utilize the open-source TerraNubis F3 block seismic dataset.
+    *   Preprocess data via SEG-Y loading, coordinate scaling, bandpass filtering, Hilbert transform for envelope extraction, and normalization.
+    *   Extract labeled 3D patches for the CNN and 1D traces for the BiLSTM based on interpreted horizons.
+2.  **3D Convolutional Neural Network (CNN) Model**:
+    *   Design and implement a custom 3D CNN architecture tailored for seismic patch classification.
+    *   Train the CNN on extracted 3D patches and evaluate its performance.
+3.  **Bidirectional Long Short-Term Memory (BiLSTM) Model**:
+    *   Design and implement a BiLSTM network to classify facies based on individual seismic traces (sequences of amplitude values).
+    *   Train the BiLSTM on extracted 1D traces and evaluate its performance.
+4.  **Hybrid CNN-BiLSTM Model**:
+    *   Develop a hybrid architecture that combines features extracted by the 3D CNN (from patches) and the BiLSTM (from corresponding traces).
+    *   Train the hybrid model and evaluate its performance.
+5.  **Comparative Analysis**:
+    *   Benchmark the performance of the 3D CNN, BiLSTM, and hybrid model.
+    *   Use metrics such as accuracy, precision, recall, F1-score, and confusion matrices.
+6.  **Visualization**:
+    *   Generate seismic sections with predicted facies overlays for validation and presentation.
+    *   Plot training history (loss and accuracy) and performance comparison charts.
 
 ## Getting Started
 
 ### Prerequisites
-- **Python**: 3.8 or higher
-- **JupyterLab**: For running the planned notebook
-- **Hardware**: **MPS**/GPU recommended for model training
+-   **Python**: 3.8 or higher
+-   **JupyterLab**: For running the notebook
+-   **PyTorch**: For deep learning model implementation
+-   **Hardware**: GPU (CUDA or MPS) recommended for efficient model training.
 
 ### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/druspect/druspect-8321_seismic_interpretation_final_project.git
-   cd druspect-8321_seismic_interpretation_final_project
-Install dependencies (once populated):
-bash
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/druspect/druspect-8321_seismic_interpretation_final_project.git
+    cd druspect-8321_seismic_interpretation_final_project
+    ```
+2.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  Obtain the TerraNubis F3 seismic dataset as outlined in `data/README.md` (to be created or updated) and place them in the `data/` directory.
 
-pip install -r requirements.txt
-Obtain seismic datasets as outlined in data/README.md and place them in the data/ directory.
-Usage
-The project will utilize a single Jupyter notebook (seismic_interpretation.ipynb, to be added later) within a JupyterLab environment. Instructions for running and modifying the notebook will be provided upon its inclusion.
+### Usage
+The project utilizes a single Jupyter notebook (`Revised Seismic Interpretation Analysis Final.ipynb` or similar name) within a JupyterLab environment. Detailed instructions for running and modifying the notebook are provided within the notebook itself.
 
-Repository Structure
-data/: Guidelines for sourcing and organizing seismic datasets.
-docs/: Theoretical background, literature resources, and project drafts.
-outputs/: Placeholder for figures and model outputs.
-README.md: Central documentation (you’re reading it!).
-requirements.txt: List of Python dependencies (template provided).
+## Repository Structure (Proposed)
+-   `data/`: Guidelines for sourcing and organizing seismic datasets (e.g., F3 block).
+-   `docs/`: Theoretical background, literature resources, and project drafts.
+-   `notebooks/`: Jupyter notebook(s) for the analysis (e.g., `Revised Seismic Interpretation Analysis Final.ipynb`).
+-   `outputs/`: Placeholder for figures, model weights, and other generated outputs.
+-   `src/` (Optional): Python scripts for helper functions or model definitions if refactored out of the notebook.
+-   `README.md`: Central documentation (this file).
+-   `LICENSE`: Project license.
+-   `requirements.txt`: List of Python dependencies.
 
-To be completed
-Expected Challenges
-Data Scale: Efficiently processing large seismic datasets.
-Label Quality: Mitigating noise or inconsistencies in training labels.
-RL Design: Crafting an effective reward function for reinforcement learning in this domain.
-Assumptions
-Availability of sufficient labeled seismic data for training and validation.
-Compatibility of pre-trained CNNs with seismic data after fine-tuning.
-Feasibility of defining a meaningful state-action space for reinforcement learning.
+## Expected Challenges
+-   **Data Scale**: Efficiently processing and training models on large 3D seismic datasets.
+-   **Label Quality**: Mitigating the impact of any noise or inconsistencies in the interpreted horizon data used for labeling.
+-   **Model Complexity**: Balancing model complexity with available computational resources and training time.
+-   **Hyperparameter Tuning**: Finding optimal hyperparameters for three distinct deep learning architectures.
 
-Documentation
-- Principles of seismic interpretation and ML techniques used.
-- Key literature and datasets informing the project.
-- Initial project documents.
+## Assumptions
+-   Availability of the F3 block dataset with seismic data and corresponding horizon interpretations.
+-   The chosen deep learning architectures (3D CNN, BiLSTM, Hybrid) are suitable for capturing relevant features for seismic facies classification.
 
-**Notes on README:**
-- It’s detailed yet avoids implementation specifics, focusing on structure and intent. to be filled in later.
-- Challenges and assumptions add critical reflection, showing awareness of potential issues.
+## Documentation
+-   Principles of seismic interpretation and the deep learning techniques employed.
+-   Key literature and datasets informing the project.
 
 ## Obtaining Datasets
-Download from:
-- [TerraNubis F3 Dataset](https://terranubis.com) - Open seismic dataset with geological context.
+-   **TerraNubis F3 Dataset**: Download from [TerraNubis](https://terranubis.com). This is an open seismic dataset with geological context, suitable for this project.
 
-## Setup Instructions
-1. Download the `.segy` files from the above sources.
-2. Place them in this directory (e.g., `data/seg_dataset.segy`).
-3. Optionally, add a small sample dataset to `sample_data/` for testing purposes.
+## Setup Instructions for Data
+1.  Download the `.sgy` files for the seismic volume and any associated horizon/top files.
+2.  Place them in a designated data directory (e.g., `data/F3_Block/`).
+3.  Update paths in the Jupyter notebook to point to these data files.
 
-## Expected Format
-- Files should be in SEG-Y format, standard for seismic data.
-- Accompanying metadata (e.g., inline/crossline ranges) should be documented if available.
-docs/theoretical_background.md (Template)
+## Expected Data Format
+-   Seismic Volume: SEG-Y format.
+-   Horizons/Tops: Text files (e.g., `.xyt`) containing X, Y, and TWT (Two-Way Time) information, or other formats compatible with the preprocessing scripts.
 
-# Theoretical Background
-This document outlines the theoretical foundations of the project. to be written.
-
-## Seismic Interpretation
-Seismic data interpretation involves analyzing reflected waves to map subsurface structures. Challenges include:
-- Noise from acquisition and environmental factors.
-- Complexity of structure and stratigraphic geological features (e.g., faults, salt bodies), differentiating the two, then successfully classifying the stratigraphy.
-
-## Transfer Learning
-Transfer learning leverages pre-trained models (e.g., ResNet) to address data scarcity. For seismic data:
-- Pre-trained CNNs can extract spatial features from image-converted seismic sections.
-- Fine-tuning adapts these features to domain-specific patterns.
-
-
-## Reinforcement Learning ??? Maybe if time allowed
-Reinforcement learning (RL) involves an agent learning optimal actions via rewards. In this context:
-- **State**: Current interpretation (e.g., facies map).
-- **Action**: Adjustments to the interpretation.
-- **Reward**: Alignment with ground truth or expert feedback.
-
-
-## Datasets
-- TerraNubis F3 Dataset: https://terranubis.com
-requirements.txt (Template)
-
-# Core dependencies (to be refined with specific versions later)
-python>=3.8
-jupyterlab
-numpy
-pandas
-matplotlib
-seaborn
-tensorflow  # For transfer learning
-torch       # Alternative for RL or TL
-obspy       # For seismic data handling
-.gitignore
