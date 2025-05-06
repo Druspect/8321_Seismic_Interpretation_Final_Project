@@ -52,32 +52,8 @@ The project adopts a structured pipeline implemented in a Jupyter notebook:
 -   **Python**: 3.8 or higher
 -   **JupyterLab**: For running the notebook
 -   **PyTorch**: For deep learning model implementation
--   **Hardware**: GPU (CUDA or MPS) recommended for efficient model training.
+-   **Hardware**: GPU with CUDA or CPU depending on your system, wont work with mps
 
-### Installation
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/druspect/druspect-8321_seismic_interpretation_final_project.git
-    cd druspect-8321_seismic_interpretation_final_project
-    ```
-2.  Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-3.  Obtain the TerraNubis F3 seismic dataset as outlined in `data/README.md` (to be created or updated) and place them in the `data/` directory.
-
-### Usage
-The project utilizes a single Jupyter notebook (`Revised Seismic Interpretation Analysis Final.ipynb` or similar name) within a JupyterLab environment. Detailed instructions for running and modifying the notebook are provided within the notebook itself.
-
-## Repository Structure (Proposed)
--   `data/`: Guidelines for sourcing and organizing seismic datasets (e.g., F3 block).
--   `docs/`: Theoretical background, literature resources, and project drafts.
--   `notebooks/`: Jupyter notebook(s) for the analysis (e.g., `Revised Seismic Interpretation Analysis Final.ipynb`).
--   `outputs/`: Placeholder for figures, model weights, and other generated outputs.
--   `src/` (Optional): Python scripts for helper functions or model definitions if refactored out of the notebook.
--   `README.md`: Central documentation (this file).
--   `LICENSE`: Project license.
--   `requirements.txt`: List of Python dependencies.
 
 ## Expected Challenges
 -   **Data Scale**: Efficiently processing and training models on large 3D seismic datasets.
